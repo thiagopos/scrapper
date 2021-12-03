@@ -1,0 +1,7 @@
+{
+  "principal": "http://hmacn-ghahm.prodam/aghu/login.seam",
+  "selecaoClinica": "http://hmacn-ghahm.prodam/aghu/psh/newWindowTelaoPainelSitHospitalar.seam",
+  "pagina1": "http://hmacn-ghahm.prodam/aghu/psh/newWindowTelaoPainelSitHospitalar.seam#tabelaPainelHospitalar",  
+  "inicio": "http://hmacn-ghahm.prodam/aghu/psh/newWindowTelaoPainelSitHospitalar.seam?firstResult=",
+  "fim": "&ativo=true&cid=900133&conversationPropagation=join#tabelaPainelHospitalar"
+}

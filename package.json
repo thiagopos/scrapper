@@ -1,0 +1,17 @@
+{
+  "name": "SCRAPER",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",  
+  "dependencies": {
+    "delay": "^5.0.0",
+    "luxon": "^1.27.0",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "mongodb": "^3.6.6",
+    "puppeteer": "^9.1.0"
+  },
+  "devDependencies": {
+    "chalk": "^3.0.0"
+  }
+}
