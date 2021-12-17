@@ -1,12 +1,10 @@
 const fs = require('fs') 
 const delay = require('delay')
-const moment = require('moment')
+const { DateTime } = require('luxon')
 const chalk = require('chalk')
 const MongoClient = require('mongodb').MongoClient
 const uri = 'mongodb://smshacn310:27017'
 const { scrapper, formatter } = require('./scrapper.js')
-
-moment.locale('pt-br')
 
 MongoClient.connect(
   uri,
@@ -17,12 +15,22 @@ MongoClient.connect(
   }
 );
 
+const setDelay = () => {
+  const time = DateTime.now({zone: 'America/Sao_Paulo'})
+  let hora = time.hour
+  if(hora >= 0 && hora<= 5) return 2700000 //45 minutos durante a madrugada
+  if(hora > 5 && hora<= 15) return 360000 //360000 6 minutos das 7 até 12
+  if(hora > 15 && hora<= 19) return 540000 //9 minutos das 7 até 12
+  if(hora > 19 && hora<= 23) return 960000 //16 minutos das 7 até 12
+}
+
 (async () => {
   let acc = 1
   while (true) {
 
-    let data = await scrapper().catch((err) => err)
-    let kanban = await formatter(data) 
+    //let data = await scrapper(setDelay()).catch((err) => err)    
+    let data = await scrapper(1).catch((err) => err)    
+    let kanban = await formatter(data)
         
     // Refatorando 
     
@@ -33,6 +41,7 @@ MongoClient.connect(
       let kanbanOLD = []
       let kanbanNEW = []
 
+      
       results.forEach(p => {        
         kanbanOLD.push(p.prontuario)
       })      
@@ -43,16 +52,14 @@ MongoClient.connect(
       
       //Filtra os valores diferentes entre uma lista e outra
       const pacientes_removidos = kanbanOLD.filter((p) => !kanbanNEW.includes(p))
-      let bufferAlta = ''
+      let bufferAlta = pacientes_removidos
       //Remove os dados de pacientes com alta do banco de dados      
       pacientes_removidos.forEach((p, i) =>  {
         db.collection('pacientes_internados').deleteOne({prontuario: p}, (err, obj) => {
           if (err) throw err;
-          bufferAlta = bufferAlta + ` ${p}\n`    
+          
         });
-      })
-      
-
+      })   
       
       //Realiza o Replace de dados de pacientes com base no RH dos mesmos
       kanban.forEach(p => {
@@ -61,12 +68,13 @@ MongoClient.connect(
         })
       })
 
+      bufferAlta.forEach( a => {
+        db.collection('ALTAS').insertOne({data: DateTime.now(), alta: a}, err => {
+          if(err) console.log(err)
+        })
+      })      
       
-      fs.appendFile('log.txt', bufferAlta, (err) => {
-        if (err) throw err
-        //console.log(chalk.green.bold('► Dados mantidos em arquivo.'))        
-      })
-      console.log(chalk.bgCyan.bold('► Altas:\n'+ bufferAlta + '\n'))  
+      console.log(chalk.bgCyan.bold('► Altas:\n'+ bufferAlta.length + '\n'))  
       console.log(chalk.bgYellow.bold('► Dados salvos em banco de dados.\n'))
       
     } else {      
@@ -74,4 +82,6 @@ MongoClient.connect(
     }
   }
  
+ 
 })()
+

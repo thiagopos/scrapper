@@ -1,0 +1,102 @@
+[
+  {
+    "codigo": "9",
+    "clinica": "Centro Obstétrico"
+  },
+  {
+    "codigo": "8",
+    "clinica": "Centro Cirurgico"
+  },  
+  {
+    "codigo": "11",
+    "clinica": "UTI Adulto"
+  },
+  {
+    "codigo": "13",
+    "clinica": "UTI Pediátrica"
+  },
+  {
+    "codigo": "14",
+    "clinica": "UTI Neonatal"
+  },
+  {
+    "codigo": "16",
+    "clinica": "Obstetrícia Cirúrgica"
+  },
+  {
+    "codigo": "17",
+    "clinica": "Obstetrícia Clínica"
+  },
+  {
+    "codigo": "20",
+    "clinica": "Pediatria Clínica"
+  },
+  {
+    "codigo": "21",
+    "clinica": "Neurocirurgia"
+  },
+  {
+    "codigo": "22",
+    "clinica": "Unidade Intermediária Neonatal"
+  },
+  {
+    "codigo": "23",
+    "clinica": "Cirurgia Geral"
+  }, 
+  {
+    "codigo": "25",
+    "clinica": "Clínica Geral"
+  },
+  {
+    "codigo": "26",
+    "clinica": "Ortopedia e Traumatologia"
+  },
+  {
+    "codigo": "27",
+    "clinica": "Isolamento UTI Adulto"
+  },
+  {
+    "codigo": "28",
+    "clinica": "Isolamento Pediátrico"
+  },
+  {
+    "codigo": "29",
+    "clinica": "Isolamento Neonatal"
+  },
+  {
+    "codigo": "57",
+    "clinica": "Observação Pediátrica"
+  },
+  {
+    "codigo": "58",
+    "clinica": "Observação Feminino"
+  },
+  {
+    "codigo": "59",
+    "clinica": "Observação Masculino"
+  },
+  {
+    "codigo": "60",
+    "clinica": "Observação Indiferenciada"
+  },
+  {
+    "codigo": "69",
+    "clinica": "Choque"
+  },
+  {
+    "codigo": "71",
+    "clinica": "Sutura"
+  },
+  {
+    "codigo": "79",
+    "clinica": "Observação Covid-19"
+  },
+  {
+    "codigo": "81",
+    "clinica": "Centro de Tratamento Intermediario"
+  },
+  {
+    "codigo": "83",
+    "clinica": "Isolamento UTI Pediátrica"
+  }
+]
